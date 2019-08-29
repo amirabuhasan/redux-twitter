@@ -21,7 +21,7 @@ const ComposeTweet = (props) => {
         const { dispatch, authedUser, replying, replyingId } = props;
         e.preventDefault();
         dispatch(handleAddTweet({ text, author: authedUser, replyingTo: replyingId }));
-
+        setText('');
         if (!replying) {
             setRedirect(true);
         }

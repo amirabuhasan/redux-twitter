@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import connect from "react-redux/es/connect/connect";
 import Tweets from "./Tweets";
 
 const Home = ({ tweetIds }) => {
     return (
-        <Tweets tweetIds={ tweetIds }/>
+        <Fragment>
+            <h3 className='center'>Your Timeline</h3>
+            <Tweets tweetIds={ tweetIds }/>
+        </Fragment>
     )
 };
 

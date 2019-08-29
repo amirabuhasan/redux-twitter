@@ -21,8 +21,8 @@ const TweetPage = ({ tweet = {} }) => {
 const Replies = ({ replies }) => {
     return (
         <Fragment>
-            <h3 className='replies' />
-            <Tweets tweetIds={ replies }/>
+            <h3 className='center'>Replies</h3>
+            <Tweets tweetIds={ replies.reverse() }/>
         </Fragment>
     )
 };
