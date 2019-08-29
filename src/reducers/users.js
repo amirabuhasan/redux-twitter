@@ -1,5 +1,5 @@
 import { SET_USERS } from "../actions/users";
-import { ADD_TWEET } from "../actions/tweets";
+import { ADD_TWEET, REPLY_TWEET } from "../actions/tweets";
 
 const users = (state = {}, action) => {
     switch (action.type) {
@@ -8,7 +8,7 @@ const users = (state = {}, action) => {
                 ...state,
                 ...action.users
             };
-        case ADD_TWEET :
+        case (ADD_TWEET || REPLY_TWEET) :
             return {
                 ...state,
                 [action.tweet.author]: {

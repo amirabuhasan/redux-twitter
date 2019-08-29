@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import connect from "react-redux/es/connect/connect";
-import { handleAddTweet } from "../actions/tweets";
+import { handleAddTweet, handleReplyTweet } from "../actions/tweets";
 
 const ComposeTweet = (props) => {
     const [text, setText] = useState('');
@@ -18,10 +18,13 @@ const ComposeTweet = (props) => {
     };
 
     const handleSubmit = (e) => {
-        const { dispatch, authedUser } = props;
+        const { dispatch, authedUser, replying, replyingId } = props;
         e.preventDefault();
-        dispatch(handleAddTweet({ text, author: authedUser }));
-        setRedirect(true);
+        dispatch(handleAddTweet({ text, author: authedUser, replyingTo: replyingId }));
+
+        if (!replying) {
+            setRedirect(true);
+        }
     };
 
     return (

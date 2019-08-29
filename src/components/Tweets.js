@@ -1,26 +1,17 @@
 import React from 'react';
-import connect from "react-redux/es/connect/connect";
 import Tweet from "./Tweet";
 
-const Tweets = ({ tweets }) => {
+const Tweets = ({ tweetIds }) => {
+
     return (
         <ul className='dashboard-list'>
-            { tweets.map(tweet => (
+            { tweetIds.map(id => (
                 <li>
-                    <Tweet id={ tweet.id }/>
+                    <Tweet id={ id }/>
                 </li>
             ))}
         </ul>
     )
 };
 
-const mapStateToProps = ({ tweets }) => {
-    const sortedTweets = Object.keys(tweets)
-        .map(id => tweets[id])
-        .sort((a, b) => b.timestamp - a.timestamp);
-    return {
-        tweets: sortedTweets
-    }
-};
-
-export default connect(mapStateToProps)(Tweets);
+export default Tweets;

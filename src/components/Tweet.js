@@ -9,7 +9,8 @@ const Tweet = (props) => {
     const { formattedTweet, authedUser } = props;
     const { avatar, name, timestamp, parent, text, replies, hasLiked, likes, id } = formattedTweet;
 
-    const toggleLikeTweet = () => {
+    const toggleLikeTweet = (e) => {
+        e.preventDefault()
         const { dispatch } = props;
         if (hasLiked) {
             dispatch(handleUnlikeTweet(id, authedUser));

@@ -1,4 +1,4 @@
-import { ADD_TWEET, LIKE_TWEET, SET_TWEETS, UNLIKE_TWEET } from "../actions/tweets";
+import { ADD_TWEET, LIKE_TWEET, REPLY_TWEET, SET_TWEETS, UNLIKE_TWEET } from "../actions/tweets";
 
 const tweets = (state = {}, action) => {
     const tweetLikes = state[action.tweetId] && state[action.tweetId].likes;
@@ -29,6 +29,17 @@ const tweets = (state = {}, action) => {
             return {
                 ...state,
                 [action.tweet.id]: action.tweet
+            };
+        case REPLY_TWEET :
+            const originalTweetId = action.tweet.replyingTo;
+            const replyingTweetId = action.tweet.id;
+            return {
+                ...state,
+                [replyingTweetId]: action.tweet,
+                [originalTweetId]: {
+                    ...state[originalTweetId],
+                    replies: [...state[originalTweetId].replies, replyingTweetId]
+                }
             };
         default :
             return state;

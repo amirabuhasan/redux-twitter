@@ -6,6 +6,7 @@ export const SET_TWEETS = 'SET_TWEETS';
 export const LIKE_TWEET = 'LIKE_TWEET';
 export const UNLIKE_TWEET = 'UNLIKE_TWEET';
 export const ADD_TWEET = 'ADD_TWEET';
+export const REPLY_TWEET = 'REPLY_TWEET';
 
 export const setTweets = (tweets) => {
     return {
@@ -37,12 +38,23 @@ export const addTweet = (tweet) => {
     }
 };
 
+export const replyTweet = (tweet) => {
+    return {
+        type: REPLY_TWEET,
+        tweet
+    }
+};
+
 export const handleAddTweet = (tweet) => {
     return (dispatch) => {
         dispatch(showLoading());
         return saveTweet(tweet)
             .then(res => {
-                dispatch(addTweet(res));
+                if (tweet.replyingTo) {
+                    dispatch(replyTweet(res))
+                } else {
+                    dispatch(addTweet(res));
+                }
                 dispatch(hideLoading());
             })
     }

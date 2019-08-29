@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from 'react'
 import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
-import Tweets from "./Tweets";
+import Home from "./Home";
 import LoadingBar from 'react-redux-loading-bar'
 import ComposeTweet from "./ComposeTweet";
 import TweetPage from "./TweetPage";
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import Switch from "react-router-dom/es/Switch";
 
 const App = (props) => {
   const { dispatch, loading } = props;
@@ -27,9 +28,12 @@ const App = (props) => {
                         <li><NavLink to='/new' activeClassName='active'>Add Tweet</NavLink></li>
                       </ul>
                     </nav>
-                    <Route exact path='/' component={ Tweets }/>
-                    <Route path='/tweet/:id' component={ TweetPage }/>
-                    <Route path='/new' component={ ComposeTweet }/>
+                    <Switch>
+                      <Route exact path='/' component={ Home }/>
+                      <Route path='/tweet/:id' component={ TweetPage }/>
+                      <Route path='/new' component={ ComposeTweet }/>
+                      <Route component={ () => <div>Page not found</div>}/>
+                    </Switch>
                   </Router>
                 </div>
                 )

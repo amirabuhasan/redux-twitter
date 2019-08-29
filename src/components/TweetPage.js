@@ -2,13 +2,17 @@ import React, { Fragment } from 'react';
 import Tweet from "./Tweet";
 import ComposeTweet from "./ComposeTweet";
 import connect from "react-redux/es/connect/connect";
+import Tweets from "./Tweets";
 
-const TweetPage = ({ tweet }) => {
+const TweetPage = ({ tweet = {} }) => {
     const { id, replies } = tweet;
+    if (!id) {
+        return <div>Tweet not found!</div>
+    }
     return (
         <div>
             <Tweet id={ id }/>
-            <ComposeTweet />
+            <ComposeTweet replying={ true } replyingId={ id } />
             { replies.length > 0 && <Replies replies={ replies }/> }
         </div>
     )
@@ -18,13 +22,7 @@ const Replies = ({ replies }) => {
     return (
         <Fragment>
             <h3 className='replies' />
-            <ul>
-                { replies.map(id => (
-                    <li>
-                        <Tweet id={ id }/>
-                    </li>
-                )) }
-            </ul>
+            <Tweets tweetIds={ replies }/>
         </Fragment>
     )
 };
