@@ -1,4 +1,4 @@
-import { LIKE_TWEET, SET_TWEETS, UNLIKE_TWEET } from "../actions/tweets";
+import { ADD_TWEET, LIKE_TWEET, SET_TWEETS, UNLIKE_TWEET } from "../actions/tweets";
 
 const tweets = (state = {}, action) => {
     const tweetLikes = state[action.tweetId] && state[action.tweetId].likes;
@@ -24,6 +24,11 @@ const tweets = (state = {}, action) => {
                     ...state[action.tweetId],
                     likes: tweetLikes.filter(userId => userId !== action.authedUserId)
                 }
+            };
+        case ADD_TWEET :
+            return {
+                ...state,
+                [action.tweet.id]: action.tweet
             };
         default :
             return state;

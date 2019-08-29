@@ -1,4 +1,5 @@
 import { SET_USERS } from "../actions/users";
+import { ADD_TWEET } from "../actions/tweets";
 
 const users = (state = {}, action) => {
     switch (action.type) {
@@ -6,6 +7,14 @@ const users = (state = {}, action) => {
             return {
                 ...state,
                 ...action.users
+            };
+        case ADD_TWEET :
+            return {
+                ...state,
+                [action.tweet.author]: {
+                    ...state[action.tweet.author],
+                    tweets: [...state[action.tweet.author].tweets, action.tweet.id]
+                }
             };
         default :
             return state;

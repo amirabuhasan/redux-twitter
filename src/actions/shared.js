@@ -4,7 +4,7 @@ import { setTweets } from "./tweets";
 import { setAuthedUser } from "./authedUser";
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
-const AUTHED_ID = 'tylermcginnis';
+export const AUTHED_ID = 'tylermcginnis';
 
 export const handleInitialData = () => {
     return (dispatch) => {
