@@ -3,6 +3,7 @@ import { handleInitialData } from "../actions/shared";
 import { connect } from "react-redux";
 import Tweets from "./Tweets";
 import LoadingBar from 'react-redux-loading-bar'
+import ComposeTweet from "./ComposeTweet";
 
 const App = (props) => {
   const { dispatch, loading } = props;
@@ -16,7 +17,7 @@ const App = (props) => {
             ? <LoadingBar />
             : (
                 <div className='container'>
-                  <Tweets />
+                  <ComposeTweet />
                 </div>
                 )
         }
