@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Tweets from "./Tweets";
 import LoadingBar from 'react-redux-loading-bar'
 import ComposeTweet from "./ComposeTweet";
+import TweetPage from "./TweetPage";
 
 const App = (props) => {
   const { dispatch, loading } = props;
@@ -17,7 +18,7 @@ const App = (props) => {
             ? <LoadingBar />
             : (
                 <div className='container'>
-                  <ComposeTweet />
+                  <TweetPage match={{params: {id: '8xf0y6ziyjabvozdd253nd'}}} />
                 </div>
                 )
         }

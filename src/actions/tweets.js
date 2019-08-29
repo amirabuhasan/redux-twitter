@@ -1,5 +1,6 @@
 import { saveTweet } from "../utils/api";
 import { _saveLikeToggle } from "../utils/_DATA";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
 
 export const SET_TWEETS = 'SET_TWEETS';
 export const LIKE_TWEET = 'LIKE_TWEET';
@@ -38,23 +39,25 @@ export const addTweet = (tweet) => {
 
 export const handleAddTweet = (tweet) => {
     return (dispatch) => {
+        dispatch(showLoading());
         return saveTweet(tweet)
             .then(res => {
-                dispatch(addTweet(res))
+                dispatch(addTweet(res));
+                dispatch(hideLoading());
             })
     }
 };
 
 export const handleLikeTweet = (tweetId, authedUserId) => {
     return (dispatch) => {
+        dispatch(likeTweet(tweetId, authedUserId));
         return _saveLikeToggle({ id: tweetId, authedUser: authedUserId, hasLiked: false })
-            .then(() =>  dispatch(likeTweet(tweetId, authedUserId)))
     }
 };
 
 export const handleUnlikeTweet = (tweetId, authedUserId) => {
     return (dispatch) => {
+        dispatch(unLikeTweet(tweetId, authedUserId));
         return _saveLikeToggle({ id: tweetId, authedUser: authedUserId, hasLiked: true })
-            .then(() => dispatch(unLikeTweet(tweetId, authedUserId)))
     }
 };

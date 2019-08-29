@@ -18,7 +18,7 @@ const Tweet = (props) => {
     };
 
     return (
-        <li className='tweet'>
+        <a className='tweet'>
             <img src={ avatar } className='avatar'/>
             <div className='tweet-info'>
                 <div>
@@ -38,7 +38,7 @@ const Tweet = (props) => {
                     <span>{likes !== 0 && likes}</span>
                 </div>
             </div>
-        </li>
+        </a>
     )
 };
 

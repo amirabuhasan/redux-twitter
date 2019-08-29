@@ -19,9 +19,8 @@ const ComposeTweet = (props) => {
 
     return (
         <div>
-            <div>
-                <h3 className='center'>Compose new Tweet</h3>
-                <form className='new-tweet' onSubmit={ handleSubmit }>
+            <h3 className='center'>Compose new Tweet</h3>
+            <form className='new-tweet' onSubmit={ handleSubmit }>
                     <textarea
                         className='textarea'
                         placeholder="What's happening?"
@@ -29,9 +28,8 @@ const ComposeTweet = (props) => {
                         onChange={ handleTyping }
                         value={ text }
                     />
-                    <button className='btn' type='submit'>Submit</button>
-                </form>
-            </div>
+                <button className='btn' type='submit'>Submit</button>
+            </form>
         </div>
     )
 };
