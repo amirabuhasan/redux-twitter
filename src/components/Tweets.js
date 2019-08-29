@@ -2,13 +2,12 @@ import React from 'react';
 import connect from "react-redux/es/connect/connect";
 import Tweet from "./Tweet";
 
-const Tweets = (props) => {
-    const { tweetIds } = props;
+const Tweets = ({ tweets }) => {
     return (
         <ul className='dashboard-list'>
-            { tweetIds.map(tweetId => (
+            { tweets.map(tweet => (
                 <li>
-                    <Tweet id={ tweetId }/>
+                    <Tweet id={ tweet.id }/>
                 </li>
             ))}
         </ul>
@@ -16,9 +15,11 @@ const Tweets = (props) => {
 };
 
 const mapStateToProps = ({ tweets }) => {
-    const tweetIds = [...Object.keys(tweets)];
+    const sortedTweets = Object.keys(tweets)
+        .map(id => tweets[id])
+        .sort((a, b) => b.timestamp - a.timestamp);
     return {
-        tweetIds
+        tweets: sortedTweets
     }
 };
 

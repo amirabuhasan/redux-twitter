@@ -5,6 +5,7 @@ import Tweets from "./Tweets";
 import LoadingBar from 'react-redux-loading-bar'
 import ComposeTweet from "./ComposeTweet";
 import TweetPage from "./TweetPage";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 
 const App = (props) => {
   const { dispatch, loading } = props;
@@ -14,11 +15,22 @@ const App = (props) => {
   }, []);
   return (
       <Fragment>
+        <LoadingBar />
         { loading
-            ? <LoadingBar />
+            ? null
             : (
                 <div className='container'>
-                  <TweetPage match={{params: {id: '8xf0y6ziyjabvozdd253nd'}}} />
+                  <Router>
+                    <nav className='nav'>
+                      <ul>
+                        <li><NavLink exact to='/' activeClassName='active'>Home</NavLink></li>
+                        <li><NavLink to='/new' activeClassName='active'>Add Tweet</NavLink></li>
+                      </ul>
+                    </nav>
+                    <Route exact path='/' component={ Tweets }/>
+                    <Route path='/tweet/:id' component={ TweetPage }/>
+                    <Route path='/new' component={ ComposeTweet }/>
+                  </Router>
                 </div>
                 )
         }

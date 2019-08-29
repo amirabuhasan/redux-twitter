@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import connect from "react-redux/es/connect/connect";
 import { handleAddTweet } from "../actions/tweets";
 
 const ComposeTweet = (props) => {
     const [text, setText] = useState('');
+    const [redirect, setRedirect] = useState(false);
+
+    useEffect(() => {
+        if (redirect) {
+            props.history.push('/')
+        }
+    }, [redirect]);
 
     const handleTyping = (e) => {
         const typedText = e.target.value;
         setText(typedText);
-        console.log(text)
     };
 
     const handleSubmit = (e) => {
         const { dispatch, authedUser } = props;
         e.preventDefault();
-        dispatch(handleAddTweet({ text, author: authedUser }))
+        dispatch(handleAddTweet({ text, author: authedUser }));
+        setRedirect(true);
     };
 
     return (

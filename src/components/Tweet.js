@@ -3,6 +3,7 @@ import connect from "react-redux/es/connect/connect";
 import { formatDate, formatTweet } from "../utils/helpers";
 import { TiArrowBackOutline, TiHeartOutline, TiHeartFullOutline } from 'react-icons/ti';
 import { handleLikeTweet, handleUnlikeTweet } from "../actions/tweets";
+import { Link } from "react-router-dom";
 
 const Tweet = (props) => {
     const { formattedTweet, authedUser } = props;
@@ -18,7 +19,7 @@ const Tweet = (props) => {
     };
 
     return (
-        <a className='tweet'>
+        <Link className='tweet' to={ `/tweet/${ id }` }>
             <img src={ avatar } className='avatar'/>
             <div className='tweet-info'>
                 <div>
@@ -38,7 +39,7 @@ const Tweet = (props) => {
                     <span>{likes !== 0 && likes}</span>
                 </div>
             </div>
-        </a>
+        </Link>
     )
 };
 
