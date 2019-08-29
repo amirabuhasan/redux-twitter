@@ -6,7 +6,7 @@ const Tweets = ({ tweetIds }) => {
     return (
         <ul className='dashboard-list'>
             { tweetIds.map(id => (
-                <li>
+                <li key={ id }>
                     <Tweet id={ id }/>
                 </li>
             ))}
