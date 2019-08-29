@@ -13,7 +13,6 @@ const Home = ({ tweetIds }) => {
 
 const mapStateToProps = ({ tweets }) => {
     const tweetIds = Object.keys(tweets)
-        .map(id => tweets[id])
         .sort((a, b) => b.timestamp - a.timestamp)
         .map(tweet => tweet.id);
     return {
